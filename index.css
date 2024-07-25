@@ -20,13 +20,16 @@ form > input:focus {
   border: 2px solid #d0214b;
   outline: none;
 }
-form > button {
+button {
   border: none;
   background: transparent;
+  cursor: pointer;
+  font-size: 20px;
+}
+form > button {
   color: #d0214b;
   font-weight: 500;
   font-size: 24px;
-  cursor: pointer;
   margin-left: 6px;
 }
 
@@ -36,13 +39,36 @@ article {
   border-bottom: 6px double #4cbad4;
 }
 ul {
-  list-style-type: "⃝";
+  padding: 0 25px;
+  list-style: none;
   text-align: left;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
 }
-ul > li {
-  margin: 15px 0;
-  padding-left: 25px;
+
+li {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
 }
 li::marker {
   color: #d0214b;
+}
+
+input[type="checkbox"] {
+  width: 24px;
+  height: 24px;
+  margin: 0;
+  margin-right: 15px;
+  border-radius: 50%;
+  vertical-align: middle;
+  border: 2px solid #d0214b;
+  appearance: none;
+  -webkit-appearance: none;
+  outline: none;
+  cursor: pointer;
+}
+input[type="checkbox"]:checked {
+  background-color: #d0214b;
 }

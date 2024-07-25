@@ -9,6 +9,7 @@ const $addBtn = document.querySelector("#add");
 $addBtn.addEventListener("click", async () => {
   const newTodoText = $input.value;
   await addTodo(newTodoText);
+  $input.value = "";
 });
 
 $form.addEventListener("submit", (e) => {
@@ -35,12 +36,7 @@ const renderTodoList = async () => {
 
     $ul.innerHTML = "";
     todoList.forEach((todo) => {
-      const $todoElement = document.createElement("li");
-      $todoElement.textContent = todo.todo;
-      $todoElement.setAttribute("id", todo.id);
-
-      $ul.appendChild($todoElement);
-      $ul.appendChild;
+      renderTodo(todo);
     });
   } catch (e) {
     console.error("투두리스트 렌더링 실패", e);
@@ -48,6 +44,41 @@ const renderTodoList = async () => {
   }
 };
 renderTodoList();
+
+// 하나의 todo 항목 ui 구현
+const renderTodo = (todo) => {
+  // 새로 추가된 투두 그리기
+  const $li = document.createElement("li");
+  $li.id = todo.id;
+
+  const $checkboxTodoContainer = document.createElement("span");
+
+  // 체크 박스
+  const $checkbox = document.createElement("input");
+  $checkbox.type = "checkbox";
+  $checkboxTodoContainer.appendChild($checkbox);
+
+  const $textNode = document.createElement("span");
+  $textNode.textContent = todo.todo;
+  $checkboxTodoContainer.appendChild($textNode);
+
+  $li.appendChild($checkboxTodoContainer);
+
+  const $buttonContainer = document.createElement("span");
+  // 수정 버튼
+  const $editBtn = document.createElement("button");
+  $editBtn.textContent = "✏️";
+  $editBtn.id = "edit";
+
+  // 삭제 버튼
+  const $delBtn = document.createElement("button");
+  $delBtn.textContent = "🗑️";
+  $delBtn.id = "delete";
+
+  $buttonContainer.append($editBtn, $delBtn);
+  $li.append($buttonContainer);
+  $ul.appendChild($li);
+};
 
 // 리스트에 새로운 todo 추가하기
 const addTodo = async (newTodoText) => {
@@ -58,12 +89,7 @@ const addTodo = async (newTodoText) => {
       body: JSON.stringify({ todo: newTodoText, done: false }),
     });
     const resTodo = await res.json();
-
-    // 새로 추가된 투두 그려주는 부분
-    const $li = document.createElement("li");
-    $li.id = resTodo.id;
-    $li.textContent = resTodo.todo;
-    $ul.appendChild($li);
+    renderTodo(resTodo);
   } catch (e) {
     console.log("error", e);
     console.error("데이터 추가 실패", e);
