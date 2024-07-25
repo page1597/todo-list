@@ -1,0 +1,48 @@
+body {
+  text-align: center;
+}
+h1 {
+  color: #d0214b;
+  font-size: 40px;
+}
+main {
+  font-size: 24px;
+  color: #3f3f3f;
+  width: 500px;
+  margin: 0 auto;
+}
+form > input {
+  border: 2px solid #4cbad4;
+  padding: 10px 20px;
+  font-size: 20px;
+}
+form > input:focus {
+  border: 2px solid #d0214b;
+  outline: none;
+}
+form > button {
+  border: none;
+  background: transparent;
+  color: #d0214b;
+  font-weight: 500;
+  font-size: 24px;
+  cursor: pointer;
+  margin-left: 6px;
+}
+
+article {
+  margin-top: 20px;
+  border-top: 6px double #4cbad4;
+  border-bottom: 6px double #4cbad4;
+}
+ul {
+  list-style-type: "⃝";
+  text-align: left;
+}
+ul > li {
+  margin: 15px 0;
+  padding-left: 25px;
+}
+li::marker {
+  color: #d0214b;
+}
